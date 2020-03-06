@@ -1,6 +1,14 @@
 import React from 'react';
-import { View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
+
+import Routes from './routes';
 
 export default function App() {
-  return <View />;
+  return (
+    <NavigationContainer>
+      <StatusBar barStyle="light-content" background="#fff" />
+      <Routes />
+    </NavigationContainer>
+  );
 }
