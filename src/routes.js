@@ -9,17 +9,18 @@ const Stack = createStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{ header: props => <Header {...props} /> }}
-      />
-      <Stack.Screen
-        name="Cart"
-        component={Cart}
-        options={{ header: props => <Header {...props} /> }}
-      />
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: '#FFF',
+        headerBackTitleVisible: false,
+        cardStyle: {
+          backgroundColor: '#191920',
+        },
+        header: navigation => <Header {...navigation} />,
+      }}
+    >
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Cart" component={Cart} />
     </Stack.Navigator>
   );
 }
