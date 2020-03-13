@@ -1,6 +1,10 @@
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
+export const Scroll = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})``;
+
 export const Container = styled.View`
   padding: 10px;
   background: #fff;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../services/api';
 
@@ -18,8 +19,12 @@ import {
   AddProduct,
 } from './styles';
 
-export default function Home({ navigation }) {
+import * as CartActions from '../../store/modules/cart/actions';
+
+export default function Home() {
   const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function loadProducts() {
@@ -34,6 +39,10 @@ export default function Home({ navigation }) {
     loadProducts();
   }, []);
 
+  function handleAddProduct(product) {
+    dispatch(CartActions.addToCart(product));
+  }
+
   function renderProductList() {
     return (
       <>
@@ -46,7 +55,7 @@ export default function Home({ navigation }) {
               <Title>{item.title}</Title>
               <Price>{item.priceFormatted}</Price>
 
-              <AddProductButton>
+              <AddProductButton onPress={() => handleAddProduct(item)}>
                 <ProductAmount>
                   <Icon name="add-shopping-cart" color="#FFF" size={20} />
                   <ItemAmount>0</ItemAmount>
