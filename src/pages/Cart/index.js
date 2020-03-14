@@ -26,6 +26,9 @@ import {
   OrderButton,
   OrderText,
   Scroll,
+  EmptyContainer,
+  EmptyText,
+  EmptySubText,
 } from './styles';
 
 import * as CartActions from '../../store/modules/cart/actions';
@@ -64,55 +67,67 @@ export default function Cart() {
     <>
       <Scroll>
         <Container>
-          <ProductList>
-            {products.map(product => (
-              <ProductContainer key={String(product.id)}>
-                <ProductInfo>
-                  <ProductImage source={{ uri: product.image }} />
-                  <ProductDetails>
-                    <ProductTitle>{product.title}</ProductTitle>
-                    <ProductPrice>{product.price}</ProductPrice>
-                  </ProductDetails>
-                  <DeleteProduct
-                    onPress={() => handleRemoveFromCart(product.id)}
-                  >
-                    <Icon name="delete-forever" size={24} color="#7159c1" />
-                  </DeleteProduct>
-                </ProductInfo>
-                <ProductAmountContainer>
-                  <ProductAmountControl>
-                    <AmountControlButton
-                      onPress={() => handleDecrementAmount(product)}
-                    >
-                      <Icon
-                        name="remove-circle-outline"
-                        size={24}
-                        color="#7159c1"
-                      />
-                    </AmountControlButton>
-                    <ProductAmount>{product.amount}</ProductAmount>
-                    <AmountControlButton
-                      onPress={() => handleIncrementAmount(product)}
-                    >
-                      <Icon
-                        name="add-circle-outline"
-                        size={24}
-                        color="#7159c1"
-                      />
-                    </AmountControlButton>
-                  </ProductAmountControl>
-                  <SubTotal>{product.subtotal}</SubTotal>
-                </ProductAmountContainer>
-              </ProductContainer>
-            ))}
-          </ProductList>
-          <TotalContainer>
-            <TotalText>Total</TotalText>
-            <TotalPrice>{total}</TotalPrice>
-            <OrderButton>
-              <OrderText>FINALIZAR PEDIDO</OrderText>
-            </OrderButton>
-          </TotalContainer>
+          {products.length ? (
+            <>
+              <ProductList>
+                {products.map(product => (
+                  <ProductContainer key={String(product.id)}>
+                    <ProductInfo>
+                      <ProductImage source={{ uri: product.image }} />
+                      <ProductDetails>
+                        <ProductTitle>{product.title}</ProductTitle>
+                        <ProductPrice>{product.price}</ProductPrice>
+                      </ProductDetails>
+                      <DeleteProduct
+                        onPress={() => handleRemoveFromCart(product.id)}
+                      >
+                        <Icon name="delete-forever" size={24} color="#7159c1" />
+                      </DeleteProduct>
+                    </ProductInfo>
+                    <ProductAmountContainer>
+                      <ProductAmountControl>
+                        <AmountControlButton
+                          onPress={() => handleDecrementAmount(product)}
+                        >
+                          <Icon
+                            name="remove-circle-outline"
+                            size={24}
+                            color="#7159c1"
+                          />
+                        </AmountControlButton>
+                        <ProductAmount>{product.amount}</ProductAmount>
+                        <AmountControlButton
+                          onPress={() => handleIncrementAmount(product)}
+                        >
+                          <Icon
+                            name="add-circle-outline"
+                            size={24}
+                            color="#7159c1"
+                          />
+                        </AmountControlButton>
+                      </ProductAmountControl>
+                      <SubTotal>{product.subtotal}</SubTotal>
+                    </ProductAmountContainer>
+                  </ProductContainer>
+                ))}
+              </ProductList>
+              <TotalContainer>
+                <TotalText>Total</TotalText>
+                <TotalPrice>{total}</TotalPrice>
+                <OrderButton>
+                  <OrderText>FINALIZAR PEDIDO</OrderText>
+                </OrderButton>
+              </TotalContainer>
+            </>
+          ) : (
+            <EmptyContainer>
+              <Icon name="remove-shopping-cart" size={100} color="#7159c1" />
+              <EmptyText>O carrinho está vazio!</EmptyText>
+              <EmptySubText>
+                Explore os produtos da loja e adicione os produtos que desejar.
+              </EmptySubText>
+            </EmptyContainer>
+          )}
         </Container>
       </Scroll>
     </>

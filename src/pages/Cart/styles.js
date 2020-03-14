@@ -107,3 +107,21 @@ export const OrderText = styled.Text`
   font-size: 14px;
   text-align: center;
 `;
+
+export const EmptyContainer = styled.View`
+  align-items: center;
+  padding: 20px;
+`;
+
+export const EmptyText = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+`;
+
+export const EmptySubText = styled.Text`
+  font-size: 16px;
+  text-align: center;
+  color: #666;
+  margin-top: 10px;
+`;
