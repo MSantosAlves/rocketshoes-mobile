@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import '../../config/loadFont';
@@ -27,7 +27,11 @@ import {
   Scroll,
 } from './styles';
 
+import * as CartActions from '../../store/modules/cart/actions';
+
 export default function Cart() {
+  const dispatch = useDispatch();
+
   const products = useSelector(state =>
     state.cart.map(product => ({
       ...product,
@@ -43,6 +47,10 @@ export default function Cart() {
     )
   );
 
+  function handleRemoveFromCart(id) {
+    dispatch(CartActions.removeFromCart(id));
+  }
+
   return (
     <>
       <Scroll>
@@ -56,7 +64,9 @@ export default function Cart() {
                     <ProductTitle>{product.title}</ProductTitle>
                     <ProductPrice>{product.price}</ProductPrice>
                   </ProductDetails>
-                  <DeleteProduct>
+                  <DeleteProduct
+                    onPress={() => handleRemoveFromCart(product.id)}
+                  >
                     <Icon name="delete-forever" size={24} color="#7159c1" />
                   </DeleteProduct>
                 </ProductInfo>
