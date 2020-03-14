@@ -17,6 +17,7 @@ import {
   ProductAmountContainer,
   DeleteProduct,
   ProductAmountControl,
+  AmountControlButton,
   ProductAmount,
   SubTotal,
   TotalContainer,
@@ -51,6 +52,14 @@ export default function Cart() {
     dispatch(CartActions.removeFromCart(id));
   }
 
+  function handleIncrementAmount(product) {
+    dispatch(CartActions.updateAmount(product.id, product.amount + 1));
+  }
+
+  function handleDecrementAmount(product) {
+    dispatch(CartActions.updateAmount(product.id, product.amount - 1));
+  }
+
   return (
     <>
       <Scroll>
@@ -72,13 +81,25 @@ export default function Cart() {
                 </ProductInfo>
                 <ProductAmountContainer>
                   <ProductAmountControl>
-                    <Icon
-                      name="remove-circle-outline"
-                      size={24}
-                      color="#7159c1"
-                    />
+                    <AmountControlButton
+                      onPress={() => handleDecrementAmount(product)}
+                    >
+                      <Icon
+                        name="remove-circle-outline"
+                        size={24}
+                        color="#7159c1"
+                      />
+                    </AmountControlButton>
                     <ProductAmount>{product.amount}</ProductAmount>
-                    <Icon name="add-circle-outline" size={24} color="#7159c1" />
+                    <AmountControlButton
+                      onPress={() => handleIncrementAmount(product)}
+                    >
+                      <Icon
+                        name="add-circle-outline"
+                        size={24}
+                        color="#7159c1"
+                      />
+                    </AmountControlButton>
                   </ProductAmountControl>
                   <SubTotal>{product.subtotal}</SubTotal>
                 </ProductAmountContainer>

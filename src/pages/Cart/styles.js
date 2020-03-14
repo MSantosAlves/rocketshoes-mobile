@@ -52,6 +52,8 @@ export const ProductAmountContainer = styled.View`
   border-radius: 4px;
 `;
 
+export const AmountControlButton = styled.TouchableOpacity``;
+
 export const ProductAmountControl = styled.View`
   flex-direction: row;
   align-items: center;
