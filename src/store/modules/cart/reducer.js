@@ -2,7 +2,7 @@ import produce from 'immer';
 
 export default function cart(state = [], action) {
   switch (action.type) {
-    case '@CART/ADD':
+    case '@CART/ADD_SUCCESS':
       return produce(state, draft => {
         const productIndex = draft.findIndex(
           product => product.id === action.product.id
@@ -27,7 +27,7 @@ export default function cart(state = [], action) {
           draft.splice(productIndex, 1);
         }
       });
-    case '@cart/UPDATE_AMOUNT':
+    case '@CART/UPDATE_AMOUNT_SUCCESS':
       return produce(state, draft => {
         const productIndex = draft.findIndex(
           product => product.id === action.id

@@ -46,8 +46,8 @@ export default function Home() {
     loadProducts();
   }, []);
 
-  function handleAddProduct(product) {
-    dispatch(CartActions.addToCart(product));
+  function handleAddProduct(id) {
+    dispatch(CartActions.addToCartRequest(id));
   }
 
   function renderProductList() {
@@ -62,7 +62,7 @@ export default function Home() {
               <Title>{item.title}</Title>
               <Price>{item.priceFormatted}</Price>
 
-              <AddProductButton onPress={() => handleAddProduct(item)}>
+              <AddProductButton onPress={() => handleAddProduct(item.id)}>
                 <ProductAmount>
                   <Icon name="add-shopping-cart" color="#FFF" size={20} />
                   <ItemAmount>{itemAmount[item.id] || 0}</ItemAmount>

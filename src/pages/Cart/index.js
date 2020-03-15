@@ -56,11 +56,11 @@ export default function Cart() {
   }
 
   function handleIncrementAmount(product) {
-    dispatch(CartActions.updateAmount(product.id, product.amount + 1));
+    dispatch(CartActions.updateAmountRequest(product.id, product.amount + 1));
   }
 
   function handleDecrementAmount(product) {
-    dispatch(CartActions.updateAmount(product.id, product.amount - 1));
+    dispatch(CartActions.updateAmountRequest(product.id, product.amount - 1));
   }
 
   return (
